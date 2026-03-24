@@ -1,0 +1,234 @@
+---
+---
+
+<section class="contact" id="kontakt">
+    <div class="header">
+        <h2>KONTAKT</h2>
+        <p>Spojte sa s nami</p>
+    </div>
+
+    <div class="contact-inner">
+        <div class="form-side">
+            <p class="form-title">Napíšte nám</p>
+            <p class="form-sub">Odpovieme do 24 hodín.</p>
+
+            <form>
+                <div class="row">
+                    <input type="text" placeholder="Meno" />
+                    <input type="text" placeholder="Priezvisko" />
+                </div>
+                <input type="email" placeholder="Email" />
+                <input type="tel" placeholder="Telefónne číslo" />
+                <textarea placeholder="Správa" rows="5"></textarea>
+                <button type="submit">Odoslať</button>
+            </form>
+        </div>
+
+        <div class="info-side">
+            <div class="info-group">
+                <p class="info-title">Fakturačné údaje</p>
+                <div class="info-line"></div>
+                <p class="info-text">
+                    Obchodný názov s.r.o<br>
+                    Ulica 123<br>
+                    IČO: 00 000 000<br>
+                    DIČ: 0000000000<br>
+                    IČ DPH: SK0000000000
+                </p>
+            </div>
+
+            <div class="info-group">
+                <p class="info-title">Kontaktné údaje</p>
+                <div class="info-line"></div>
+                <p class="info-text">
+                    Meno Priezvisko<br>
+                    +421 9XX XXX XXX<br>
+                    someone@example.com
+                </p>
+            </div>
+
+            <div class="info-group">
+                <p class="info-title">Sociálne siete</p>
+                <div class="info-line"></div>
+                <p class="info-text">
+                    <a href="#">Instagram</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .contact {
+        background: #0f0d0b;
+        padding: 100px 80px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 72px;
+    }
+
+    h2 {
+        font-family: 'Airy Restoration', Georgia, serif;
+        font-size: clamp(40px, 6vw, 80px);
+        font-weight: 400;
+        color: #f0e8df;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+    }
+
+    .header p {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.8);
+    }
+
+    .contact-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+    }
+
+    /* Form */
+    .form-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.85);
+        margin-bottom: 6px;
+        color: #BCA584;
+    }
+
+    .form-sub {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(240, 232, 223, 0.6);
+        margin-bottom: 28px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    input, textarea {
+        width: 100%;
+        background: none;
+        border: none;
+        border-bottom: 0.5px solid rgba(240, 232, 223, 0.15);
+        padding: 12px 0;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgb(255, 255, 255);
+        outline: none;
+        transition: border-color 0.3s ease;
+        resize: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: rgba(240, 232, 223, 0.6);
+    }
+
+    input:focus, textarea:focus {
+        border-bottom-color: rgba(240, 232, 223, 0.5);
+    }
+
+    button {
+        align-self: flex-start;
+        background: none;
+        border: 0.5px solid rgba(240, 232, 223, 0.35);
+        padding: 14px 36px;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #f0e8df;
+        cursor: pointer;
+        margin-top: 8px;
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    button:hover {
+        background: rgba(240, 232, 223, 0.06);
+        border-color: rgba(240, 232, 223, 0.7);
+    }
+
+    /* Info */
+    .info-side {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .info-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.5);
+        color: #BCA584;
+    }
+
+    .info-line {
+        width: 100%;
+        height: 0.5px;
+        background: rgba(240, 232, 223, 0.08);
+    }
+
+    .info-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(240, 232, 223, 0.4);
+        line-height: 1.9;
+    }
+
+    .info-text a {
+        color: rgba(240, 232, 223, 0.55);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .info-text a:hover {
+        color: #f0e8df;
+    }
+
+    @media (max-width: 768px) {
+        .contact {
+            padding: 80px 24px;
+        }
+
+        .contact-inner {
+            grid-template-columns: 1fr;
+            gap: 56px;
+        }
+
+        .row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

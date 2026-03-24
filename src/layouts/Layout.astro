@@ -1,3 +1,9 @@
+
+---
+import Navbar from '../components/NavBar.astro';
+const { title = 'Decora Panels' } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,15 +15,22 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<Navbar />
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
+<style is:global>
+	* {
 		margin: 0;
-		width: 100%;
-		height: 100%;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		background: #0f0d0b;
+		color: #f0e8df;
+		font-family: 'Inter', sans-serif;
+		font-weight: 300;
 	}
 </style>

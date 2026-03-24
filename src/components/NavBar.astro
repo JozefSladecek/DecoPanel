@@ -1,0 +1,192 @@
+---
+---
+
+<nav class="navbar">
+    <a href="/" class="logo">Decora Panels</a>
+
+    <ul class="nav-links">
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#ponuka">Ponuka</a></li>
+        <li><a href="#vlastnosti">Vlastnosti</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+
+    <button class="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu">
+    <ul>
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#ponuka">Ponuka</a></li>
+        <li><a href="#vlastnosti">Vlastnosti</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+</div>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 32px 48px;
+    }
+
+    .logo {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: #f5efe8;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(245, 239, 232, 0.7);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        color: #f5efe8;
+    }
+
+    /* Hamburger */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 24px;
+        height: 0.5px;
+        background: #f5efe8;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .hamburger.open span:first-child {
+        transform: translateY(3.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:last-child {
+        transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #0f0d0b;
+        z-index: 99;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .mobile-menu.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .mobile-menu ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .mobile-menu a {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 36px;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        color: rgba(245, 239, 232, 0.85);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .mobile-menu a:hover {
+        color: #f5efe8;
+    }
+
+    @media (max-width: 768px) {
+        .navbar {
+            padding: 24px;
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+</style>
+
+<script is:inline>
+    // Hamburger menu logic
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    hamburger?.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu?.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger?.classList.remove('open');
+            mobileMenu?.classList.remove('open');
+        });
+    });
+
+    // Smooth scroll for all nav links
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,133 @@
+---
+---
+
+<section class="features" id="vlastnosti">
+    <div class="header">
+        <h2>VLASTNOSTI PANELOV</h2>
+        <p>Dizajn, ktorý funguje</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <p class="card-title">Veľkoformátová elegancia</p>
+            <p class="card-text">Veľkoformátové flexibilné panely vytvárajú súvislý, čistý povrch bez rušivého delenia.</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Flexibilita</p>
+            <p class="card-text">Prispôsobia sa aj mierne nerovným či zaobleným stenám.</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Nízka hmotnosť</p>
+            <p class="card-text">Ľahké panely nezaťažujú steny a jednoducho sa s nimi manipuluje.</p>
+        </div>
+        <div class="card">
+            <p class="card-title">Aplikácia panelov</p>
+            <p class="card-text">Rýchla, čistá montáž lepením priamo na stenu bez zložitých úprav.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .features {
+        background: #0f0d0b;
+        padding: 100px 80px;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    h2 {
+        font-family: 'Airy Restoration', Georgia, serif;
+        font-size: clamp(36px, 6vw, 80px);
+        font-weight: 400;
+        color: #f0e8df;
+        letter-spacing: 0.08em;
+        margin-bottom: 16px;
+    }
+
+    .header p {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        color: rgba(240, 232, 223, 0.8);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .card {
+        background: #1a1714;
+        padding: 56px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        transition: background 0.5s ease, transform 0.5s ease;
+        cursor: default;
+    }
+
+    .card:hover {
+        background: #252018;
+        transform: translateY(-4px);
+    }
+
+    .card-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 17px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.85);
+        transition: color 0.4s ease;
+    }
+
+    .card:hover .card-title {
+        color: rgba(240, 232, 223, 1);
+    }
+
+    .card-text {
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(240, 232, 223, 0.5);
+        line-height: 1.8;
+        letter-spacing: 0.02em;
+        transition: color 0.4s ease;
+    }
+
+    .card:hover .card-text {
+        color: rgba(240, 232, 223, 1);
+    }
+
+    .card-line {
+        width: 0;
+        height: 0.5px;
+        background: rgba(240, 232, 223, 0.4);
+        transition: width 0.5s ease;
+        margin-top: 4px;
+    }
+
+    .card:hover .card-line {
+        width: 32px;
+    }
+
+    @media (max-width: 768px) {
+        .features {
+            padding: 80px 24px;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            padding: 32px 24px;
+        }
+    }
+</style>
