@@ -1,0 +1,316 @@
+---
+import BaseLayout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+    return [
+        { params: { slug: 'italy-huge-travertine' } },
+        { params: { slug: 'round-line-stone' } },
+    ];
+}
+const products = {
+    'round-line-stone': {
+        name: 'Round Line Stone',
+        description: 'Dekoratívny panel s realistickým vzhľadom kameňa. Moderná štruktúra s jemným 3D efektom.',
+        image: '/product-1.jpeg',
+        vlastnosti: [
+            'Realistická imitácia kameňa',
+            'Výrazná 3D štruktúra',
+            'Ľahký a flexibilný',
+            'Jednoduchá manipulácia',
+        ],
+        technicke: [
+            'Materiál: polyuretán (PU)',
+            'Odolnosť voči vlhkosti a vode',
+            'Protipožiarna klasifikácia A1',
+            'Farebná stálosť',
+        ],
+        vyhody: [
+            'Nízka hmotnosť (cca 3 kg / panel)',
+            'Rýchla a jednoduchá montáž',
+            'Bez zaťaženia konštrukcie',
+            'Vhodný aj na väčšie plochy',
+        ],
+        pouzitie: [
+            'Vhodný do interiéru aj exteriéru',
+            'Ideálny pre steny a dekoratívne prvky',
+        ],
+        rozmery: '2400 × 595 mm',
+        hrubka: '1,5 – 2 mm',
+    },
+    'italy-huge-travertine': {
+        name: 'Italy Huge Travertine',
+        description: 'Flexibilný panel s autentickým vzhľadom travertínu. Nadčasový dizajn s priznanou štruktúrou kameňa.',
+        image: '/product-2.jpeg',
+        vlastnosti: [
+            'Realistická textúra travertínu',
+            'Jemná pórovitosť a prirodzené žilkovanie',
+            'Flexibilný – prispôsobí sa povrchu',
+        ],
+        technicke: [
+            'Protipožiarna trieda A1',
+            'Vodoodolný',
+            'UV stabilný – nevybledne',
+            'Odolnosť voči vlhkosti',
+        ],
+        vyhody: [
+            'Ľahký materiál – cca 9 kg/kus',
+            'Jednoduchá montáž (lepidlo)',
+            'Bez potreby zložitých konštrukcií',
+        ],
+        pouzitie: [
+            'Bezšvový vzhľad veľkoformátových panelov',
+            'Vhodný na steny, stropy aj nábytok',
+            'Interiér aj exteriér',
+        ],
+        rozmery: '1200 × 2900 mm',
+        hrubka: '3 – 5 mm',
+    },
+};
+
+const { slug } = Astro.params;
+const product = products[slug as keyof typeof products];
+
+if (!product) return Astro.redirect('/');
+---
+<BaseLayout title={product.name + ' — Decora Panels'}>
+    <div class="product-page">
+        <div class="product-left">
+            <img src={product.image} alt={product.name} />
+        </div>
+
+        <div class="product-right">
+            <a href="/#ponuka" class="back">← Späť</a>
+
+            <div class="product-header">
+                <p class="eyebrow">Dekoračné panely</p>
+                <h1>{product.name}</h1>
+                <p class="description">{product.description}</p>
+            </div>
+
+            <div class="blocks">
+                <div class="block">
+                    <p class="block-title">Vlastnosti</p>
+                    <div class="block-line"></div>
+                    <ul>{product.vlastnosti.map(v => <li>{v}</li>)}</ul>
+                </div>
+                <div class="block">
+                    <p class="block-title">Technické vlastnosti</p>
+                    <div class="block-line"></div>
+                    <ul>{product.technicke.map(v => <li>{v}</li>)}</ul>
+                </div>
+                <div class="block">
+                    <p class="block-title">Výhody</p>
+                    <div class="block-line"></div>
+                    <ul>{product.vyhody.map(v => <li>{v}</li>)}</ul>
+                </div>
+                <div class="block">
+                    <p class="block-title">Rozmery</p>
+                    <div class="block-line"></div>
+                    <div class="rozmery-grid">
+                        <div class="rozmer-item">
+                            <span class="rozmer-label">Formát</span>
+                            <span class="rozmer-value">{product.rozmery}</span>
+                        </div>
+                        <div class="rozmer-item">
+                            <span class="rozmer-label">Hrúbka</span>
+                            <span class="rozmer-value">{product.hrubka}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="/#kontakt" class="btn">Kontaktujte nás</a>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    .product-page {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 100vh;
+        background: #0f0d0b;
+    }
+
+    .product-left {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .product-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-right {
+        padding: 120px 64px 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        overflow-y: auto;
+    }
+
+    .back {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(245, 239, 232, 0.4);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .back:hover { color: rgba(245, 239, 232, 0.8); }
+
+    .product-header {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .eyebrow {
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.35);
+    }
+
+    h1 {
+        font-family: 'Airy Restoration', Georgia, serif;
+        font-size: clamp(36px, 4vw, 64px);
+        font-weight: 400;
+        color: #f5efe8;
+        letter-spacing: 0.04em;
+        line-height: 1.1;
+    }
+
+    .description {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: 300;
+        color: rgba(245, 239, 232, 0.6);
+        line-height: 1.7;
+    }
+
+    .blocks {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .block {
+        background: #1a1714;
+        padding: 28px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .block-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.4);
+    }
+
+    .block-line {
+        width: 100%;
+        height: 0.5px;
+        background: rgba(240, 232, 223, 0.07);
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    li {
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 300;
+        color: rgba(240, 232, 223, 0.5);
+        line-height: 1.7;
+        padding-left: 16px;
+        position: relative;
+    }
+
+    li::before {
+        content: '—';
+        position: absolute;
+        left: 0;
+        color: rgba(240, 232, 223, 0.2);
+        font-size: 10px;
+        top: 2px;
+    }
+
+    .rozmery-grid {
+        display: flex;
+        gap: 48px;
+    }
+
+    .rozmer-item {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .rozmer-label {
+        font-family: 'Inter', sans-serif;
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(240, 232, 223, 0.3);
+    }
+
+    .rozmer-value {
+        font-family: 'Airy Restoration', Georgia, serif;
+        font-size: 24px;
+        font-weight: 400;
+        color: rgba(240, 232, 223, 0.85);
+        letter-spacing: 0.04em;
+    }
+
+    .btn {
+        display: inline-block;
+        border: 0.5px solid rgba(245, 239, 232, 0.35);
+        padding: 14px 40px;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #f5efe8;
+        text-decoration: none;
+        align-self: flex-start;
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background: rgba(245, 239, 232, 0.06);
+        border-color: rgba(245, 239, 232, 0.7);
+    }
+
+    @media (max-width: 768px) {
+        .product-page {
+            grid-template-columns: 1fr;
+        }
+
+        .product-left {
+            position: relative;
+            height: 50vh;
+        }
+
+        .product-right {
+            padding: 48px 24px 64px;
+        }
+    }
+</style>
