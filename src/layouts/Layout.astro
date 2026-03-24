@@ -1,23 +1,56 @@
-
 ---
 import Navbar from '../components/NavBar.astro';
 const { title = 'Decora Panels' } = Astro.props;
+import ScrollProgress from '../components/ScrollProgress.astro';
+import Cursor from '../components/Cursor.astro';
+import Preloader from '../components/Preloader.astro';
+
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<Navbar />
-		<slot />
-	</body>
+<html lang="sk">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+	<style>
+		@font-face {
+			font-family: 'Airy Restoration';
+			src: url('/fonts/Airy_Restoration.ttf') format('truetype');
+			font-weight: 400;
+			font-style: normal;
+			font-display: swap;
+		}
+	</style>
+</head>
+
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	}, { threshold: 0.15 });
+
+	document.querySelectorAll('.reveal').forEach(el => {
+		observer.observe(el);
+	});
+</script>
+
+<body>
+<Navbar />
+<slot />
+<ScrollProgress />
+<Cursor />
+<Preloader />
+</body>
 </html>
 
 <style is:global>
@@ -25,6 +58,7 @@ const { title = 'Decora Panels' } = Astro.props;
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+		cursor: none;
 	}
 
 	body {
@@ -33,4 +67,19 @@ const { title = 'Decora Panels' } = Astro.props;
 		font-family: 'Inter', sans-serif;
 		font-weight: 300;
 	}
+
+	.reveal {
+		opacity: 0;
+		transform: translateY(28px);
+		transition: opacity 0.9s ease, transform 0.9s ease;
+	}
+
+	.reveal.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.reveal:nth-child(2) { transition-delay: 0.15s; }
+	.reveal:nth-child(3) { transition-delay: 0.3s; }
+	.reveal:nth-child(4) { transition-delay: 0.45s; }
 </style>

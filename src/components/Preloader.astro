@@ -1,0 +1,71 @@
+---
+---
+
+<div class="preloader" id="preloader">
+    <p class="preloader-text">DECORA PANELS</p>
+    <div class="preloader-line">
+        <div class="preloader-line-inner"></div>
+    </div>
+</div>
+
+<style>
+    .preloader {
+        position: fixed;
+        inset: 0;
+        background: #0f0d0b;
+        z-index: 9998;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        transition: opacity 0.8s ease;
+    }
+
+    .preloader.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .preloader-text {
+        font-family: 'Airy Restoration', Georgia, serif;
+        font-size: clamp(24px, 4vw, 48px);
+        font-weight: 400;
+        color: rgba(245, 239, 232, 0.9);
+        letter-spacing: 0.2em;
+        animation: fadeInText 0.8s ease forwards;
+    }
+
+    .preloader-line {
+        width: 120px;
+        height: 0.5px;
+        background: rgba(245, 239, 232, 0.1);
+        overflow: hidden;
+    }
+
+    .preloader-line-inner {
+        width: 100%;
+        height: 100%;
+        background: rgba(245, 239, 232, 0.7);
+        transform: translateX(-100%);
+        animation: loadLine 1.2s ease forwards;
+    }
+
+    @keyframes fadeInText {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes loadLine {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(0); }
+    }
+</style>
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('preloader')?.classList.add('hidden');
+        }, 1400);
+    });
+</script>

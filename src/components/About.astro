@@ -2,12 +2,12 @@
 ---
 
 <section class="about" id="o-nas">
-    <div class="about-images">
+    <div class="about-images reveal">
         <img src="/about-1.jpeg" alt="Dekoračné panely" class="img-main" />
         <img src="/about-2.jpeg" alt="Dekoračné panely detail" class="img-secondary" />
     </div>
 
-    <div class="about-content">
+    <div class="about-content reveal">
         <div class="eyebrow">
             <span>O nás</span>
             <div class="eyebrow-line"></div>
@@ -21,7 +21,7 @@
 
 <style>
     .about {
-        height: 100vh;
+        height: auto;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 80px;
@@ -85,7 +85,6 @@
     }
 
     h2 {
-        //text-transform: uppercase;
         font-family: 'Airy Restoration', Georgia, serif;
         font-size: clamp(36px, 4vw, 56px);
         font-weight: 400;

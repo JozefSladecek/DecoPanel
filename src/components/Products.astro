@@ -2,7 +2,7 @@
 ---
 
 <section class="products" id="ponuka">
-    <div class="product-card">
+    <div class="product-card reveal">
         <img src="/product-1.jpeg" alt="Italy Huge Travertine" />
         <div class="overlay"></div>
         <div class="product-content">
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="product-card">
+    <div class="product-card reveal">
         <img src="/product-2.jpeg" alt="Round Line Stone" />
         <div class="overlay"></div>
         <div class="product-content">
@@ -123,6 +123,9 @@
     @media (max-width: 768px) {
         .products {
             grid-template-columns: 1fr;
+            height: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card img {

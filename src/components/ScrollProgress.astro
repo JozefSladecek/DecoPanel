@@ -1,0 +1,131 @@
+---
+---
+
+<div class="scroll-nav">
+    <div class="sections">
+        <button class="dot" data-section="hero" title="Hero"></button>
+        <button class="dot" data-section="o-nas" title="O nás"></button>
+        <button class="dot" data-section="ponuka" title="Ponuka"></button>
+        <button class="dot" data-section="vlastnosti" title="Vlastnosti"></button>
+        <button class="dot" data-section="kontakt" title="Kontakt"></button>
+    </div>
+    <button class="scroll-top" id="scrollTop">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,8 6,4 10,8" stroke="currentColor" stroke-width="0.75" stroke-linecap="square"/>
+        </svg>
+    </button>
+</div>
+
+<style>
+    .scroll-nav {
+        position: fixed;
+        right: 32px;
+        bottom: 32px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .scroll-nav.visible {
+        opacity: 1;
+    }
+
+    .sections {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(245, 239, 232, 0.25);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition: background 0.4s ease, transform 0.4s ease, height 0.4s ease;
+    }
+
+    .dot.active {
+        background: rgba(245, 239, 232, 0.9);
+        height: 16px;
+        border-radius: 2px;
+        transform: none;
+    }
+
+    .scroll-top {
+        width: 32px;
+        height: 32px;
+        border: 0.5px solid rgba(245, 239, 232, 0.2);
+        background: none;
+        color: rgba(245, 239, 232, 0.5);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .scroll-top:hover {
+        border-color: rgba(245, 239, 232, 0.6);
+        color: rgba(245, 239, 232, 0.9);
+    }
+
+    @media (max-width: 768px) {
+        .scroll-nav {
+            right: 16px;
+            bottom: 24px;
+        }
+    }
+</style>
+
+<script>
+    const nav = document.querySelector('.scroll-nav');
+    const dots = document.querySelectorAll('.dot');
+    const sections = ['hero', 'o-nas', 'ponuka', 'vlastnosti', 'kontakt'];
+
+    // Zobraz po scrollnutí
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            nav?.classList.add('visible');
+        } else {
+            nav?.classList.remove('visible');
+        }
+    });
+
+    // Aktívna sekcia
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                dots.forEach(dot => {
+                    dot.classList.toggle('active', dot.dataset.section === id);
+                });
+            }
+        });
+    }, { threshold: 0.4 });
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+    });
+
+    // Klik na dot scrolluje na sekciu
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            const id = dot.dataset.section;
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Scroll nahor
+    document.getElementById('scrollTop')?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>

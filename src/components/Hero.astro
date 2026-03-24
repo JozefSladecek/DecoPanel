@@ -1,32 +1,22 @@
 ---
 ---
 
-<!DOCTYPE html>
-<html lang="sk">
-<head>
-    <meta charset="UTF-8">
-    <title>Decora Panels</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
 <section class="hero">
     <div class="hero-content">
         <p class="subtitle">Veľkoformatové Dekoračné Panely</p>
-        <h1>DECORA PANELS</h1>
+        <h1 id="heroTitle">DECORA PANELS</h1>
         <div class="buttons">
             <a href="#kontakt" class="btn">Kontakt</a>
             <a href="#ponuka" class="btn">Ponuka</a>
         </div>
     </div>
-    <div class="scroll-indicator">
+    <div class="scroll-indicator ">
         <span>SCROLL</span>
         <div class="line">
             <div class="line-inner"></div>
         </div>
     </div>
 </section>
-</body>
-</html>
 
 <style>
     .hero {
@@ -67,6 +57,8 @@
         color: rgba(255, 255, 255, 0.85);
         letter-spacing: 0.06em;
         margin-bottom: 22px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 1.4s forwards;
     }
 
     h1 {
@@ -82,7 +74,10 @@
         display: flex;
         gap: 44px;
         margin-top: 8px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 2.2s forwards;
     }
+
 
     .btn {
         border: 0.5px solid rgba(245, 239, 232, 0.5);
@@ -109,6 +104,8 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 2.5s forwards;
     }
 
     .scroll-indicator span {
@@ -138,4 +135,36 @@
         50% { transform: translateY(0%); }
         100% { transform: translateY(100%); }
     }
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
+
+<script>
+    // parallax effect
+    const hero = document.querySelector('.hero') as HTMLElement;
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        if (hero) {
+            hero.style.backgroundPositionY = `calc(50% + ${scrolled * 0.4}px)`;
+        }
+    });
+
+    const title = document.getElementById('heroTitle');
+    if (title) {
+        const text = title.innerText;
+        title.innerHTML = text.split('').map((char, i) =>
+            char === ' '
+                ? '<span style="display:inline-block; width:0.3em;"></span>'
+                : `<span class="char" style="display:inline-block; opacity:0; transform:translateY(20px); transition: opacity 0.6s ease ${i * 0.04}s, transform 0.6s ease ${i * 0.04}s;">${char}</span>`
+        ).join('');
+
+        setTimeout(() => {
+            document.querySelectorAll('.char').forEach(char => {
+                (char as HTMLElement).style.opacity = '1';
+                (char as HTMLElement).style.transform = 'translateY(0)';
+            });
+        }, 1600);
+    }
+</script>
