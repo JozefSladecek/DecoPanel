@@ -269,7 +269,7 @@ if (!product) return Astro.redirect('/');
 
     /* RIGHT */
     .product-right {
-        padding: 100px 64px 60px;
+        padding: 80px 64px 60px;
         display: flex;
         flex-direction: column;
         gap: 36px;
@@ -435,11 +435,17 @@ if (!product) return Astro.redirect('/');
         .product-right {
             height: auto;
             overflow: visible;
-            padding: 48px 24px 64px;
+            padding: 30px 24px 64px;
         }
 
         .two-col {
             grid-template-columns: 1fr;
+        }
+
+        .rozmer-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
     }
 </style>
