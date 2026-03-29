@@ -45,7 +45,11 @@ const product = products[slug as keyof typeof products];
 if (!product) return Astro.redirect('/');
 ---
 
-<BaseLayout title={product.name + ' — Decora Panels'}>
+<BaseLayout
+        title={product.name + ' — Decora Panels'}
+        description={product.description}
+        ogImage={'https://decorapanels.sk' + product.images[0]}
+        ogUrl={'https://decorapanels.sk/produkt/' + slug} >
     <div class="product-page">
 
         <div class="product-left">

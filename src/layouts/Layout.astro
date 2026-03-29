@@ -1,12 +1,16 @@
 ---
 import Navbar from '../components/NavBar.astro';
-const { title = 'Decora Panels' } = Astro.props;
 import ScrollProgress from '../components/ScrollProgress.astro';
 import Cursor from '../components/Cursor.astro';
 import Preloader from '../components/Preloader.astro';
 import { ToastProvider } from '../components/Toast';
 
-
+const {
+	title = 'Decora Panels',
+	description = 'Veľkoformátové flexibilné panely pre moderný interiér. Ľahká montáž, prémiový vzhľad.',
+	ogImage = 'https://decorapanels.sk/decorapanelslogo.jpeg',
+	ogUrl = 'https://decorapanels.sk'
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -14,12 +18,38 @@ import { ToastProvider } from '../components/Toast';
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/jpeg" href="/decorapanelslogo.jpeg" />
 	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- SEO -->
+	<meta name="description" content="Veľkoformátové flexibilné panely s vzhľadom travertínu a kameňa. Jednoduchá montáž bez stavebných úprav. Levice, Slovensko." />
+	<meta name="keywords" content="dekoračné panely, travertín, interiér, Slovensko, Levice, flexibilné panely" />
+
+	<!-- Open Graph — for social media -->
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:url" content={ogUrl} />
+	<meta property="og:type" content="website" />
+	<meta property="og:locale" content="sk_SK" />
+
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={ogImage} />
+
+	<link rel="canonical" href={ogUrl} />
+
+	<title>{title}</title>
+
+
 	<style>
 		@font-face {
 			font-family: 'Airy Restoration';
