@@ -22,7 +22,6 @@
                 <textarea name="sprava" placeholder="Správa" rows="5" required></textarea>
                 <button type="submit">Odoslať</button>
             </form>
-            <p class="toast" id="toast">Správa bola odoslaná ✓</p>
         </div>
 
         <div class="info-side reveal">
@@ -228,20 +227,6 @@
         color: #f0e8df;
     }
 
-    .toast {
-        opacity: 0;
-        pointer-events: none;
-        font-family: 'Inter', sans-serif;
-        font-size: 12px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgba(120, 200, 150, 0.8);
-        transition: opacity 0.4s ease;
-    }
-
-    .toast.visible {
-        opacity: 1;
-    }
 
     @media (max-width: 768px) {
         .contact {
@@ -260,12 +245,41 @@
 </style>
 
 <script>
+    import { toast } from '../components/Toast';
     const form = document.getElementById('contactForm');
-    const toast = document.getElementById('toast');
+
+    function validateEmail(email: string) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function validatePhone(phone: string) {
+        return phone === '' || /^[\+]?[\d\s\-]{9,15}$/.test(phone);
+    }
 
     form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const data = new FormData(form as HTMLFormElement); // data gonna be sent to contact.php as POST request in  || name => value format (FormData object)
+
+        const meno = data.get('meno') as string;
+        const priezvisko = data.get('priezvisko') as string;
+        const email = data.get('email') as string;
+        const telefon = data.get('telefon') as string;
+        const sprava = data.get('sprava') as string;
+
+        // validation
+        if (!meno.trim() || !priezvisko.trim()) {
+            toast.error('Vyplňte meno a priezvisko.');
+            return;
+        }
+        if (!validateEmail(email)) {
+            toast.error('Zadajte platný email.'); return;
+        }
+        if (!validatePhone(telefon)) {
+            toast.error('Zadajte platné telefónne číslo.'); return;
+        }
+        if (sprava.trim().length < 10) {
+            toast.error('Správa je príliš krátka.'); return;
+        }
 
         const res = await fetch('/contact.php', {
             method: 'POST',
@@ -273,9 +287,11 @@
         });
 
         if (res.ok) {
-            toast?.classList.add('visible');
+            toast.success('Správa bola odoslaná');
             (form as HTMLFormElement).reset();
-            setTimeout(() => toast?.classList.remove('visible'), 4000);
+        } else {
+            toast.error('Vyplňte meno a priezvisko.');
         }
     });
+
 </script>

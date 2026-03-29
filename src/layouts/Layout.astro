@@ -4,6 +4,8 @@ const { title = 'Decora Panels' } = Astro.props;
 import ScrollProgress from '../components/ScrollProgress.astro';
 import Cursor from '../components/Cursor.astro';
 import Preloader from '../components/Preloader.astro';
+import { ToastProvider } from '../components/Toast';
+
 
 ---
 
@@ -50,6 +52,7 @@ import Preloader from '../components/Preloader.astro';
 <ScrollProgress />
 <Cursor />
 <Preloader />
+<ToastProvider client:load />
 </body>
 </html>
 

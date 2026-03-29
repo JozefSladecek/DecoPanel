@@ -11,7 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $to = 'info@decorapanels.sk';
     $subject = 'Nova sprava z webu od ' . $meno . ' ' . $priezvisko;
     $message = "Meno: $meno $priezvisko\nEmail: $email\nTelefon: $telefon\n\nSprava:\n$sprava";
-    $headers = "From: info@decorapanels.sk\r\nReply-To: $email";
+    $headers = "From: info@decorapanels.sk\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+
 
     mail($to, $subject, $message, $headers);
 
